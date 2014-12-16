@@ -23,6 +23,8 @@
         <hb.manager>4.2.5.Final</hb.manager>
         <spring.test>3.2.4.RELEASE</spring.test>
         <junit.version>4.11</junit.version>
+        <hibernatesqlite>1.0</hibernatesqlite>
+        <sqlite-jdbc>3.8.7</sqlite-jdbc>
     </properties>
 
     <dependencies>
@@ -76,13 +78,13 @@
         <dependency>
             <groupId>org.xerial</groupId>
             <artifactId>sqlite-jdbc</artifactId>
-            <version>3.8.7</version>
+            <version>${sqlite-jdbc}</version>
         </dependency>
 
         <dependency>
             <groupId>com.applerao</groupId>
             <artifactId>hibernatesqlite</artifactId>
-            <version>1.0</version>
+            <version>${hibernatesqlite}</version>
         </dependency>
 
     </dependencies>
