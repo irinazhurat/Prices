@@ -3,7 +3,9 @@ package com.teivar.prices.service.implementation;
 /**
  * Created by Zalesskiy_K on 17.12.2014.
  */
+
 import com.teivar.prices.entity.Receipts;
+import com.teivar.prices.entity.Shops;
 import com.teivar.prices.repository.ReceiptsRepository;
 import com.teivar.prices.service.ReceiptsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,10 +33,8 @@ public class ReceiptsServiceImpl implements ReceiptsService {
     }
 
     @Override
-    public Receipts getByDateAndShops(Date date, long shopsId) {
-        return null;
-
-        // /return receiptsRepository.findByDateAndShops(shopsId);
+    public Receipts getByDateAndShops(Shops shops, Date date) {
+        return receiptsRepository.findByDateAndShops(shops, date);
     }
 
     @Override

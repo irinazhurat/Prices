@@ -3,8 +3,11 @@ package com.teivar.prices.entity;
 /**
  * Created by Zalesskiy_K on 17.12.2014.
  */
+
 import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "Shops")
@@ -21,6 +24,17 @@ public class Shops {
 
     @Column(name = "Description")
     private String desc;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "shops")
+    private Set<Receipts> receipts;
+
+    public Set<Receipts> getUsers() {
+        return receipts;
+    }
+
+    public void setUsers(Set<Receipts> receipts) {
+        this.receipts = receipts;
+    }
 
     public Shops() {
 
