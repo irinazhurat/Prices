@@ -13,6 +13,6 @@ import java.util.Date;
  */
 public interface ReceiptsRepository extends JpaRepository<Receipts, Long>{
 
-    @Query("select r from Shops s inner join s.receipts r where s.shops = :shops and r.timeStamp = :TimeStamp")
+    @Query("select r from Receipts r where r.shops = :shops and r.timeStamp = :TimeStamp")
     Receipts findByDateAndShops(@Param("shops") Shops shops, @Param("TimeStamp") Date date);
 }

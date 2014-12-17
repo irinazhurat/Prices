@@ -11,12 +11,11 @@ import java.util.GregorianCalendar;
 
 public class ReceiptsUtil {
 
-    public static Receipts createReceipts() {
+    public static Receipts createReceipts(Shops shops) {
         Receipts receipts = new Receipts();
         GregorianCalendar calen = new GregorianCalendar(2008, 3, 27, 14, 30, 59);
         receipts.setTimeStamp(calen.getTime());
         receipts.setSumm(15354.00);
-        Shops shops = ShopsUtil.createShops();
         receipts.setShops(shops);
         return receipts;
     }

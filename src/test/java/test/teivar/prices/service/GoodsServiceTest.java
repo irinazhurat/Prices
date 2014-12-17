@@ -15,11 +15,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import test.teivar.prices.config.TestDataBaseConfig;
 import test.teivar.prices.util.GoodsUtil;
-
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-
 import static org.junit.Assert.assertEquals;
 
 @DirtiesContext
