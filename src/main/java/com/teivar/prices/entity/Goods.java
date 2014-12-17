@@ -5,6 +5,7 @@ package com.teivar.prices.entity;
  */
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "goods")
@@ -21,6 +22,17 @@ public class Goods {
 
     @Column(name = "Barcode")
     private String barcode;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "goods")
+    private Set<ReceiptItems> receiptItems;
+
+    public Set<ReceiptItems> getReceiptItemses() {
+        return receiptItems;
+    }
+
+    public void setReceiptItemses(Set<ReceiptItems> receiptItems) {
+        this.receiptItems = receiptItems;
+    }
 
     public Goods() {
 

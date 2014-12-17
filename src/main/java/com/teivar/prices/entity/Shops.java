@@ -28,11 +28,11 @@ public class Shops {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "shops")
     private Set<Receipts> receipts;
 
-    public Set<Receipts> getUsers() {
+    public Set<Receipts> getReceipts() {
         return receipts;
     }
 
-    public void setUsers(Set<Receipts> receipts) {
+    public void setReceipts(Set<Receipts> receipts) {
         this.receipts = receipts;
     }
 

@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * Created by Zalesskiy_K on 17.12.2014.
@@ -27,6 +28,17 @@ public class Receipts {
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "Shops_id", nullable = false)
     private Shops shops;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "receipts")
+    private Set<ReceiptItems> receiptItemses;
+
+    public Set<ReceiptItems> getReceiptItemses() {
+        return receiptItemses;
+    }
+
+    public void setReceiptItemses(Set<ReceiptItems> receiptItemses) {
+        this.receiptItemses = receiptItemses;
+    }
 
     public Receipts(){
 
