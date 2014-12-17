@@ -25,6 +25,9 @@
         <module name="Prices" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Prices" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
 

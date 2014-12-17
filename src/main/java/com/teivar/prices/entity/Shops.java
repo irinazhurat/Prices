@@ -1,14 +1,14 @@
 package com.teivar.prices.entity;
 
 /**
- * Created by zalesskiy_k on 16.12.2014.
+ * Created by Zalesskiy_K on 17.12.2014.
  */
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "goods")
-public class Goods {
+@Table(name = "Shops")
+public class Shops {
 
     @Id
     @GeneratedValue(generator = "increment")
@@ -19,16 +19,16 @@ public class Goods {
     @Column(name = "Name")
     private String name;
 
-    @Column(name = "Barcode")
-    private String barcode;
+    @Column(name = "Description")
+    private String desc;
 
-    public Goods() {
+    public Shops() {
 
     }
 
-    public Goods(String name, String barcode) {
+    public Shops(String name, String desc) {
         this.name = name;
-        this.barcode = barcode;
+        this.desc = desc;
     }
 
     public long getId() {
@@ -47,11 +47,11 @@ public class Goods {
         this.name = name;
     }
 
-    public String getBarcode() {
-        return barcode;
+    public String getDesc() {
+        return desc;
     }
 
-    public void setBarcode(String barcode) {
-        this.barcode = barcode;
+    public void setDesc(String barcode) {
+        this.desc = barcode;
     }
 }
