@@ -5,6 +5,7 @@ import com.teivar.prices.repository.ReceiptItemsRepository;
 import com.teivar.prices.service.ReceiptItemsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 /**

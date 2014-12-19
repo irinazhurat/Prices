@@ -3,6 +3,8 @@ package com.teivar.prices.config;
 /**
  * Created by zalesskiy_k on 16.12.2014.
  */
+
+import com.teivar.prices.controllers.ReceiptItemsController;
 import org.hibernate.ejb.HibernatePersistence;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -21,7 +23,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan("com.teivar.prices.repository")
+@ComponentScan("com.teivar.prices")
 @PropertySource("classpath:app.properties")
 @EnableJpaRepositories("com.teivar.prices.repository")
 public class DataConfig {
@@ -33,10 +35,14 @@ public class DataConfig {
     private static final String PROP_HIBERNATE_DIALECT = "db.hibernate.dialect";
     private static final String PROP_HIBERNATE_SHOW_SQL = "db.hibernate.show_sql";
     private static final String PROP_ENTITYMANAGER_PACKAGES_TO_SCAN = "db.entitymanager.packages.to.scan";
-    private static final String PROP_HIBERNATE_HBM2DDL_AUTO = "db.hibernate.hbm2ddl.auto";
+    private static final String PROP_HIBERNATE_HBM2DDL_AUTO = "hibernate.hbm2ddl.auto";
 
     @Resource
     private Environment env;
+
+    public DataConfig(){
+        super();
+    }
 
     @Bean
     public DataSource dataSource() {
@@ -69,6 +75,13 @@ public class DataConfig {
 
         return transactionManager;
     }
+
+    @Bean
+    public ReceiptItemsController receiptItemsController()
+    {
+        return new ReceiptItemsController();
+    }
+
 
     private Properties getHibernateProperties() {
         Properties properties = new Properties();

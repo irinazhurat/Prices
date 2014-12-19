@@ -23,7 +23,7 @@ public class TestDataBaseConfig {
     //private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:mysql://t-spot.org:3306/testkirill";
     //private static final String PROPERTY_NAME_DATABASE_USERNAME = "testkirill";
     //private static final String PROPERTY_NAME_DATABASE_PASSWORD = "testkirill";
-    private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:mysql://localhost:3306/test";
+    private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:mysql://localhost:3306/testdb";
     private static final String PROPERTY_NAME_DATABASE_USERNAME = "root";
     private static final String PROPERTY_NAME_DATABASE_PASSWORD = "root";
 

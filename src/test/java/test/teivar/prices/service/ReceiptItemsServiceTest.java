@@ -26,8 +26,6 @@ import test.teivar.prices.util.ShopsUtil;
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import java.util.GregorianCalendar;
-import static org.junit.Assert.assertEquals;
 
 @DirtiesContext
 @RunWith(SpringJUnit4ClassRunner.class)
