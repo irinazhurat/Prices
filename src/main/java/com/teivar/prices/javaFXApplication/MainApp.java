@@ -24,6 +24,7 @@ public class MainApp extends Application
         Scene scene = new Scene((Parent) controller.getView(), 300, 275);
         stage.setTitle("Prices");
         stage.setScene(scene);
+        stage.getScene().getStylesheets().add("css/DarkTheme.css");
         stage.show();
     }
 }
