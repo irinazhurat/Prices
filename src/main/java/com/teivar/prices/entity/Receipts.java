@@ -28,6 +28,8 @@ public class Receipts {
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "Shops_id", nullable = false)
     private Shops shops;
+    @Override
+    public String toString(){return this.getShops().getName();}
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "receipts")
     private Set<ReceiptItems> receiptItemses;

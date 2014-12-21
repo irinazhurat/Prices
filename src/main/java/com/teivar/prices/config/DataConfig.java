@@ -97,6 +97,8 @@ public class DataConfig {
     @Bean
     public EditShopsController editShopsController(){ return new EditShopsController();}
 
+    @Bean
+    public EditReceiptController editReceiptController(){return new EditReceiptController();}
 
     private Properties getHibernateProperties() {
         Properties properties = new Properties();
