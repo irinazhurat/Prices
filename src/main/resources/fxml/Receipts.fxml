@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teivar.prices.controllers.ReceiptsController">
+   <children>
+      <SplitPane layoutX="14.0" layoutY="13.0" prefHeight="374.0" prefWidth="575.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="13.0">
+         <items>
+            <TableView prefHeight="200.0" prefWidth="200.0">
+              <columns>
+                <TableColumn prefWidth="90.0" text="№" />
+                <TableColumn prefWidth="70.0" text="Дата" />
+                  <TableColumn prefWidth="301.0" text="Магазин" />
+                  <TableColumn minWidth="0.0" prefWidth="109.0" text="Сумма" />
+              </columns>
+            </TableView>
+         </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

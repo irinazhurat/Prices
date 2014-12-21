@@ -30,6 +30,11 @@ public class ReceiptItems {
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     @JoinColumn(name = "Good_id", nullable = false)
     private Goods goods;
+    @Override
+    public String toString()
+    {
+        return this.goods.getName();
+    }
 
     public ReceiptItems(){
 

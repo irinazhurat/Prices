@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teivar.prices.controllers.ReceiptItemsController">
+    <children>
+        <TableView fx:id="tableReceiptItems" layoutX="12.0" layoutY="13.0" prefHeight="411.0" prefWidth="600.0" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="13.0">
+            <columns>
+                <TableColumn fx:id="idColumn" prefWidth="80.0" text="№" />
+                <TableColumn fx:id="priceColumn" prefWidth="150.0" text="Цена" />
+                <TableColumn fx:id="quanColumn" prefWidth="150.0" text="Количество" />
+                <TableColumn fx:id="goodNameColumn" prefWidth="150.0" text="Наименование" />
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>

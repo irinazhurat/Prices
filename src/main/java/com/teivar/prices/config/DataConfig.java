@@ -4,7 +4,7 @@ package com.teivar.prices.config;
  * Created by zalesskiy_k on 16.12.2014.
  */
 
-import com.teivar.prices.controllers.ReceiptItemsController;
+import com.teivar.prices.controllers.*;
 import org.hibernate.ejb.HibernatePersistence;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -81,6 +81,21 @@ public class DataConfig {
     {
         return new ReceiptItemsController();
     }
+
+    @Bean
+    public RootController rootController()
+    {
+        return new RootController();
+    }
+
+    @Bean
+    public ReceiptsController receiptsController(){ return new ReceiptsController();}
+
+    @Bean
+    public ShopsController shopsController(){ return new ShopsController();}
+
+    @Bean
+    public EditShopsController editShopsController(){ return new EditShopsController();}
 
 
     private Properties getHibernateProperties() {

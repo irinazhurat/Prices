@@ -22,10 +22,10 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class ReceiptItemsController extends AbstractController{
 
-    private ObservableList<ReceiptItems> usersReceiptItems = FXCollections.observableArrayList();
-
     @Autowired
     private ReceiptItemsService receiptItemsService;
+
+    private ObservableList<ReceiptItems> receiptItemses = FXCollections.observableArrayList();
 
     @FXML
     private TableView<ReceiptItems> tableReceiptItems;
@@ -49,9 +49,8 @@ public class ReceiptItemsController extends AbstractController{
         idColumn.setCellValueFactory(new PropertyValueFactory<ReceiptItems, Integer>("id"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<ReceiptItems, Double>("price"));
         quanColumn.setCellValueFactory(new PropertyValueFactory<ReceiptItems, Double>("quan"));
-
         goodNameColumn.setCellValueFactory(new PropertyValueFactory<ReceiptItems, Goods>("goods"));
-        goodNameColumn.setCellFactory(new Callback<TableColumn<ReceiptItems, Goods>, TableCell<ReceiptItems, Goods>>(){
+/*        goodNameColumn.setCellFactory(new Callback<TableColumn<ReceiptItems, Goods>, TableCell<ReceiptItems, Goods>>(){
 
             @Override
             public TableCell<ReceiptItems, Goods> call(TableColumn<ReceiptItems, Goods> param) {
@@ -71,17 +70,13 @@ public class ReceiptItemsController extends AbstractController{
             }
 
         });
+*/
 
-
-        tableReceiptItems.setItems(usersReceiptItems);
+        tableReceiptItems.setItems(receiptItemses);
     }
 
     private void initData() {
-
         for (ReceiptItems receiptItems: receiptItemsService.getAll())
-            receiptItems.getGoods();
-
-        for (ReceiptItems receiptItems: receiptItemsService.getAll())
-            usersReceiptItems.add(receiptItems);
+            receiptItemses.add(receiptItems);
     }
 }
