@@ -1,6 +1,8 @@
 package com.teivar.prices.service;
 
 import com.teivar.prices.entity.ReceiptItems;
+import com.teivar.prices.entity.Receipts;
+
 import java.util.List;
 
 /**
@@ -10,8 +12,8 @@ public interface ReceiptItemsService {
 
     ReceiptItems addReceiptItems(ReceiptItems receiptItems);
     void delete(long id);
-//    ReceiptItems getByDateAndShops(Shops shops, Date date);
     ReceiptItems editReceiptItems(ReceiptItems receiptItems);
     List<ReceiptItems> getAll();
+    List<ReceiptItems> getByReceipts(Receipts receipts);
 
 }

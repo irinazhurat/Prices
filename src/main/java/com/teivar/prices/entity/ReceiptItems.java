@@ -23,11 +23,11 @@ public class ReceiptItems {
     @Column(name = "Quan")
     private double quan;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "Receipt_id", nullable = false)
     private Receipts receipts;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "Good_id", nullable = false)
     private Goods goods;
     @Override

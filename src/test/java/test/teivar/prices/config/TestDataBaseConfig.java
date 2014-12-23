@@ -20,12 +20,12 @@ import java.util.Properties;
 public class TestDataBaseConfig {
 
     private static final String PROPERTY_NAME_DATABASE_DRIVER = "com.mysql.jdbc.Driver";
-    private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:mysql://t-spot.org:3306/testdb";
-    private static final String PROPERTY_NAME_DATABASE_USERNAME = "testdb";
-    private static final String PROPERTY_NAME_DATABASE_PASSWORD = "testdbpassword";
-    //private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:mysql://localhost:3306/testdb";
-    //private static final String PROPERTY_NAME_DATABASE_USERNAME = "root";
-    //private static final String PROPERTY_NAME_DATABASE_PASSWORD = "root";
+    //private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:mysql://t-spot.org:3306/testdb";
+    //private static final String PROPERTY_NAME_DATABASE_USERNAME = "testdb";
+    //private static final String PROPERTY_NAME_DATABASE_PASSWORD = "testdbpassword";
+    private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:mysql://localhost:3306/testdb";
+    private static final String PROPERTY_NAME_DATABASE_USERNAME = "root";
+    private static final String PROPERTY_NAME_DATABASE_PASSWORD = "root";
 
     private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "org.hibernate.dialect.MySQLDialect";
     private static final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "true";

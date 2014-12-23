@@ -100,6 +100,9 @@ public class DataConfig {
     @Bean
     public EditReceiptController editReceiptController(){return new EditReceiptController();}
 
+    @Bean
+    public EditReceiptItemsController editReceiptItemsController(){return new EditReceiptItemsController();}
+
     private Properties getHibernateProperties() {
         Properties properties = new Properties();
         properties.put(PROP_HIBERNATE_DIALECT, env.getRequiredProperty(PROP_HIBERNATE_DIALECT));

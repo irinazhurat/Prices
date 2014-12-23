@@ -1,6 +1,7 @@
 package com.teivar.prices.service.implementation;
 
 import com.teivar.prices.entity.ReceiptItems;
+import com.teivar.prices.entity.Receipts;
 import com.teivar.prices.repository.ReceiptItemsRepository;
 import com.teivar.prices.service.ReceiptItemsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +30,11 @@ public class ReceiptItemsServiceImpl implements ReceiptItemsService {
         receiptItemsRepository.delete(id);
     }
 
-/*    @Override
-    public ReceiptItems getByDateAndShops(Shops shops, Date date) {
-        return receiptsRepository.findByDateAndShops(shops, date);
-    }*/
+    @Override
+    public List<ReceiptItems> getByReceipts(Receipts receipts){
+        return receiptItemsRepository.findByReceipts(receipts);
+    }
+
 
     @Override
     public ReceiptItems editReceiptItems(ReceiptItems receiptItems) {

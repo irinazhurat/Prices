@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="137.0" prefWidth="414.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teivar.prices.controllers.EditReceiptItemsController">
+   <children>
+      <GridPane layoutX="14.0" layoutY="14.0" prefHeight="90.0" prefWidth="379.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="21.0">
+         <children>
+            <Label text="Товар" />
+            <Label text="Цена" GridPane.rowIndex="1" />
+            <ComboBox fx:id="goodsComboBox" prefHeight="25.0" prefWidth="286.0" GridPane.columnIndex="1" />
+            <TextField fx:id="priceTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="quanTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="Количество" GridPane.rowIndex="2" />
+         </children>
+         <columnConstraints>
+            <ColumnConstraints halignment="LEFT" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+      </GridPane>
+      <Button layoutX="293.0" layoutY="104.0" mnemonicParsing="false" onAction="#handleOk" text="ОК" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="88.0" />
+      <Button layoutX="335.0" layoutY="104.0" mnemonicParsing="false" onAction="#handleCancel" text="Отмена" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="21.0" />
+   </children>
+</AnchorPane>

@@ -15,7 +15,6 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.util.Callback;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -50,28 +49,15 @@ public class ReceiptItemsController extends AbstractController{
         priceColumn.setCellValueFactory(new PropertyValueFactory<ReceiptItems, Double>("price"));
         quanColumn.setCellValueFactory(new PropertyValueFactory<ReceiptItems, Double>("quan"));
         goodNameColumn.setCellValueFactory(new PropertyValueFactory<ReceiptItems, Goods>("goods"));
-        goodNameColumn.setCellFactory(new Callback<TableColumn<ReceiptItems, Goods>, TableCell<ReceiptItems, Goods>>(){
-
-            @Override
-            public TableCell<ReceiptItems, Goods> call(TableColumn<ReceiptItems, Goods> param) {
-
-                TableCell<ReceiptItems, Goods> goodsTableCell = new TableCell<ReceiptItems, Goods>(){
-
-                    @Override
-                    protected void updateItem(Goods item, boolean empty) {
-                        if (item != null) {
-                            Label goodName = new Label(item.getName());
-                            setGraphic(goodName);
-                        }
+        goodNameColumn.setCellFactory(param -> new TableCell<ReceiptItems, Goods>(){
+                @Override
+                protected void updateItem(Goods item, boolean empty) {
+                    if (item != null) {
+                        Label goodName = new Label(item.getName());
+                        setGraphic(goodName);
                     }
-                };
-
-                return goodsTableCell;
-            }
-
+                }
         });
-
-
         tableReceiptItems.setItems(receiptItemses);
     }
 

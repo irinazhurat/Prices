@@ -1,8 +1,11 @@
 package com.teivar.prices.controllers;
 
+import com.teivar.prices.entity.Goods;
+import com.teivar.prices.entity.ReceiptItems;
 import com.teivar.prices.entity.Receipts;
 import com.teivar.prices.entity.Shops;
 import com.teivar.prices.javaFXApplication.MainApp;
+import com.teivar.prices.service.ReceiptItemsService;
 import com.teivar.prices.service.ReceiptsService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,7 +15,6 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.util.Callback;
 import org.controlsfx.dialog.Dialogs;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -25,8 +27,11 @@ public class ReceiptsController extends AbstractController {
 
     @Autowired
     private ReceiptsService receiptsService;
+    @Autowired
+    private ReceiptItemsService receiptItemsService;
 
     private ObservableList<Receipts> receiptses = FXCollections.observableArrayList();
+    private ObservableList<ReceiptItems> receiptItemses = FXCollections.observableArrayList();
 
     private MainApp mainApp;
 
@@ -46,6 +51,22 @@ public class ReceiptsController extends AbstractController {
     private TableColumn<Receipts, Shops> shopsColumn;
 
     @FXML
+    private TableView<ReceiptItems> receiptItemsTableView;
+
+    @FXML
+    private TableColumn<ReceiptItems, Integer> idItemsColumn;
+
+    @FXML
+    private TableColumn<ReceiptItems, Goods> goodsItemsColumn;
+
+    @FXML
+    private TableColumn<ReceiptItems, Double> priceItemsColumn;
+
+    @FXML
+    private TableColumn<ReceiptItems, Double> quanItemsColumn;
+
+
+    @FXML
     private void initialize() {
         initData();
 
@@ -53,13 +74,7 @@ public class ReceiptsController extends AbstractController {
         dateColumn.setCellValueFactory(new PropertyValueFactory<Receipts, Date>("timeStamp"));
         sumColumn.setCellValueFactory(new PropertyValueFactory<Receipts, Double>("sum"));
         shopsColumn.setCellValueFactory(new PropertyValueFactory<Receipts, Shops>("shops"));
-        shopsColumn.setCellFactory(new Callback<TableColumn<Receipts, Shops>, TableCell<Receipts, Shops>>(){
-
-            @Override
-            public TableCell<Receipts, Shops> call(TableColumn<Receipts, Shops> param) {
-
-                TableCell<Receipts, Shops> shopsTableCell = new TableCell<Receipts, Shops>(){
-
+        shopsColumn.setCellFactory(param -> new TableCell<Receipts, Shops>() {
                     @Override
                     protected void updateItem(Shops item, boolean empty) {
                         if (item != null) {
@@ -67,14 +82,11 @@ public class ReceiptsController extends AbstractController {
                             setGraphic(shopName);
                         }
                     }
-                };
-
-                return shopsTableCell;
-            }
-
         });
-
         receiptsTableView.setItems(receiptses);
+        showReceiptItems(null);
+        receiptsTableView.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> showReceiptItems(newValue));
     }
 
     @FXML
@@ -86,6 +98,17 @@ public class ReceiptsController extends AbstractController {
             initData();
         }
     }
+    @FXML
+    private void handleNewReceiptItems() {
+        ReceiptItems receiptItems = new ReceiptItems();
+        receiptItems.setReceipts(receiptsTableView.getSelectionModel().getSelectedItem());
+        boolean okClicked = mainApp.showEditReceiptItems(receiptItems);
+        if (okClicked) {
+            receiptItemsService.addReceiptItems(receiptItems);
+            showReceiptItems(receiptItems.getReceipts());
+        }
+
+    }
 
     @FXML
     private void handleEditReceipts() {
@@ -95,6 +118,26 @@ public class ReceiptsController extends AbstractController {
             if (okClicked) {
                 receiptsService.editReceipts(selectedReceipts);
                 initData();
+            }
+
+        } else {
+            // Nothing selected.
+            Dialogs.create()
+                    .title("No Selection")
+                    .masthead("No Receipts Selected")
+                    .message("Please select a receipts in the table.")
+                    .showWarning();
+        }
+    }
+
+    @FXML
+    private void handleEditReceiptItems() {
+        ReceiptItems selectedReceiptItems = receiptItemsTableView.getSelectionModel().getSelectedItem();
+        if (selectedReceiptItems != null) {
+            boolean okClicked = mainApp.showEditReceiptItems(selectedReceiptItems);
+            if (okClicked) {
+                receiptItemsService.editReceiptItems(selectedReceiptItems);
+                showReceiptItems(selectedReceiptItems.getReceipts());
             }
 
         } else {
@@ -124,11 +167,51 @@ public class ReceiptsController extends AbstractController {
         }
     }
 
+    @FXML
+    private void handleDeleteReceiptItems() {
+        ReceiptItems selectedReceiptItems = receiptItemsTableView.getSelectionModel().getSelectedItem();
+        if (selectedReceiptItems != null) {
+            receiptItemsService.delete(selectedReceiptItems.getId());
+            showReceiptItems(selectedReceiptItems.getReceipts());
+        } else {
+            // Nothing selected.
+            Dialogs.create()
+                    .title("No Selection")
+                    .masthead("No Receipts Selected")
+                    .message("Please select a receipts in the table.")
+                    .showWarning();
+        }
+    }
+
     public void setMainApp(MainApp mainApp){ this.mainApp = mainApp;}
 
     private void initData(){
         receiptses.clear();
         receiptses.addAll(receiptsService.getAll());
+
+    }
+
+    private void showReceiptItems(Receipts receipts){
+
+        receiptItemses.clear();
+        if (receipts != null && receiptItemsService.getByReceipts(receipts) != null) {
+            receiptItemses.addAll(receiptItemsService.getByReceipts(receipts));
+
+            idItemsColumn.setCellValueFactory(new PropertyValueFactory<ReceiptItems, Integer>("id"));
+            priceItemsColumn.setCellValueFactory(new PropertyValueFactory<ReceiptItems, Double>("price"));
+            quanItemsColumn.setCellValueFactory(new PropertyValueFactory<ReceiptItems, Double>("quan"));
+            goodsItemsColumn.setCellValueFactory(new PropertyValueFactory<ReceiptItems, Goods>("goods"));
+            goodsItemsColumn.setCellFactory(param -> new TableCell<ReceiptItems, Goods>() {
+                @Override
+                protected void updateItem(Goods item, boolean empty) {
+                    if (item != null) {
+                        Label goodName = new Label(item.getName());
+                        setGraphic(goodName);
+                    }
+                }
+            });
+        }
+        receiptItemsTableView.setItems(receiptItemses);
 
     }
 

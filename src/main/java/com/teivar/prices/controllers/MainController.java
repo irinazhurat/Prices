@@ -1,4 +1,4 @@
-package com.teivar.prices.javaFXApplication;
+package com.teivar.prices.controllers;
 
 import com.teivar.prices.controllers.AbstractController;
 

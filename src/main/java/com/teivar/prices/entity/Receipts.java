@@ -25,7 +25,7 @@ public class Receipts {
     @Column(name = "Summ")
     private Double summ;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "Shops_id", nullable = false)
     private Shops shops;
     @Override

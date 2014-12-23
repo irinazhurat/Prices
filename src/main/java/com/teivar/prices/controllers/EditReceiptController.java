@@ -6,9 +6,11 @@ import com.teivar.prices.service.ShopsService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import javafx.util.StringConverter;
 import org.controlsfx.dialog.Dialogs;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,22 +95,18 @@ public class EditReceiptController extends AbstractController {
     private void initialize() {
         initData();
         shopsComboBox.getItems().addAll(shopses);
-        shopsComboBox.setCellFactory(new Callback<ListView<Shops>, ListCell<Shops>>() {
-            @Override public ListCell<Shops> call(ListView<Shops> p) {
-                return new ListCell<Shops>() {
-                    @Override protected void updateItem(Shops item, boolean empty) {
+        shopsComboBox.setCellFactory(p -> new ListCell<Shops>(){
+                @Override protected void updateItem(Shops item, boolean empty) {
                         super.updateItem(item, empty);
 
                         if (item == null || empty) {
                             setGraphic(null);
                         } else {
                             Label shopName = new Label(item.getFullName());
-                            setGraphic(shopName);
-                        }
-                    }
-                };
-            }
+                        setGraphic(shopName);}
+                }
         });
+
         shopsComboBox.setConverter(new StringConverter<Shops>() {
             @Override
             public String toString(Shops shops) {

@@ -6,6 +6,7 @@ package com.teivar.prices.javaFXApplication;
 
 import com.teivar.prices.config.SpringFXMLLoader;
 import com.teivar.prices.controllers.*;
+import com.teivar.prices.entity.ReceiptItems;
 import com.teivar.prices.entity.Receipts;
 import com.teivar.prices.entity.Shops;
 import javafx.application.Application;
@@ -113,6 +114,26 @@ public class MainApp extends Application
         // Set the shops into the controller.
         controller.setDialogStage(dialogStage);
         controller.setReceipts(receipts);
+
+        // Show the dialog and wait until the user closes it
+        dialogStage.showAndWait();
+
+        return controller.isOkClick();
+    }
+
+    public boolean showEditReceiptItems(ReceiptItems receiptItems){
+        EditReceiptItemsController controller = (EditReceiptItemsController) SpringFXMLLoader.load("/fxml/EditReceiptItems.fxml");
+
+        Stage dialogStage = new Stage();
+        dialogStage.setTitle("Edit Receipt items");
+        dialogStage.initModality(Modality.WINDOW_MODAL);
+        dialogStage.initOwner(primaryStage);
+        Scene scene = new Scene((Parent) controller.getView());
+        dialogStage.setScene(scene);
+
+        // Set the shops into the controller.
+        controller.setDialogStage(dialogStage);
+        controller.setReceiptItems(receiptItems);
 
         // Show the dialog and wait until the user closes it
         dialogStage.showAndWait();
