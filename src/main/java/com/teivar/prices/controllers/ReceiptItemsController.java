@@ -50,7 +50,7 @@ public class ReceiptItemsController extends AbstractController{
         priceColumn.setCellValueFactory(new PropertyValueFactory<ReceiptItems, Double>("price"));
         quanColumn.setCellValueFactory(new PropertyValueFactory<ReceiptItems, Double>("quan"));
         goodNameColumn.setCellValueFactory(new PropertyValueFactory<ReceiptItems, Goods>("goods"));
-/*        goodNameColumn.setCellFactory(new Callback<TableColumn<ReceiptItems, Goods>, TableCell<ReceiptItems, Goods>>(){
+        goodNameColumn.setCellFactory(new Callback<TableColumn<ReceiptItems, Goods>, TableCell<ReceiptItems, Goods>>(){
 
             @Override
             public TableCell<ReceiptItems, Goods> call(TableColumn<ReceiptItems, Goods> param) {
@@ -70,13 +70,13 @@ public class ReceiptItemsController extends AbstractController{
             }
 
         });
-*/
+
 
         tableReceiptItems.setItems(receiptItemses);
     }
 
     private void initData() {
-        for (ReceiptItems receiptItems: receiptItemsService.getAll())
-            receiptItemses.add(receiptItems);
+        receiptItemses.clear();
+        receiptItemses.addAll(receiptItemsService.getAll());
     }
 }

@@ -68,4 +68,8 @@ public class Shops {
     public void setDesc(String barcode) {
         this.desc = barcode;
     }
+
+    public String getFullName(){
+        return this.getName() + '(' + this.getDesc() + ')';
+    }
 }

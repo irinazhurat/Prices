@@ -111,8 +111,7 @@ public class ShopsController extends AbstractController {
 
     private void initData(){
         shopses.clear();
-        for (Shops shops : shopsService.getAll())
-            shopses.add(shops);
+        shopses.addAll(shopsService.getAll());
     }
 
     public void setMainApp(MainApp mainApp){ this.mainApp = mainApp;}

@@ -7,9 +7,12 @@ import com.teivar.prices.service.ReceiptsService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
 import org.controlsfx.dialog.Dialogs;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -50,6 +53,26 @@ public class ReceiptsController extends AbstractController {
         dateColumn.setCellValueFactory(new PropertyValueFactory<Receipts, Date>("timeStamp"));
         sumColumn.setCellValueFactory(new PropertyValueFactory<Receipts, Double>("sum"));
         shopsColumn.setCellValueFactory(new PropertyValueFactory<Receipts, Shops>("shops"));
+        shopsColumn.setCellFactory(new Callback<TableColumn<Receipts, Shops>, TableCell<Receipts, Shops>>(){
+
+            @Override
+            public TableCell<Receipts, Shops> call(TableColumn<Receipts, Shops> param) {
+
+                TableCell<Receipts, Shops> shopsTableCell = new TableCell<Receipts, Shops>(){
+
+                    @Override
+                    protected void updateItem(Shops item, boolean empty) {
+                        if (item != null) {
+                            Label shopName = new Label(item.getFullName());
+                            setGraphic(shopName);
+                        }
+                    }
+                };
+
+                return shopsTableCell;
+            }
+
+        });
 
         receiptsTableView.setItems(receiptses);
     }
@@ -104,9 +127,8 @@ public class ReceiptsController extends AbstractController {
     public void setMainApp(MainApp mainApp){ this.mainApp = mainApp;}
 
     private void initData(){
-        for (Receipts receipts : receiptsService.getAll()){
-            receiptses.add(receipts);
-        }
+        receiptses.clear();
+        receiptses.addAll(receiptsService.getAll());
 
     }
 
