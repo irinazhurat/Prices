@@ -13,8 +13,6 @@ import javafx.util.StringConverter;
 import org.controlsfx.dialog.Dialogs;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.time.Instant;
-import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 
@@ -56,13 +54,8 @@ public class EditReceiptController extends AbstractController {
     private void handleOk() {
         if (isInputValid()) {
 
-            LocalDate ld = dtReceiptDate.getValue();
-            Instant instant = ld.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant();
-            Date dateRes = Date.from(instant);
-            receipts.setTimeStamp(dateRes);
-
-            Shops shops = shopsComboBox.getSelectionModel().getSelectedItem();
-            receipts.setShops(shops);
+            receipts.setTimeStamp(Date.from(dtReceiptDate.getValue().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
+            receipts.setShops(shopsComboBox.getSelectionModel().getSelectedItem());
 
             okClick = true;
             dialogStage.close();
@@ -128,7 +121,7 @@ public class EditReceiptController extends AbstractController {
 
             @Override
             public Shops fromString(String shopName) {
-                return shopsService.getByName(shopName);
+                return null;
             }
         });
     }

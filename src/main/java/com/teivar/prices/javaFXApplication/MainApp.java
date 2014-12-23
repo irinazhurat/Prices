@@ -31,7 +31,6 @@ public class MainApp extends Application
     {
         this.primaryStage = stage;
         this.primaryStage.setTitle("Prices");
-
         initRootLayout();
         showReceipts();
 
@@ -42,6 +41,7 @@ public class MainApp extends Application
         rootController.setMainApp(this);
         Scene scene = new Scene((Parent)rootController.getView());
         primaryStage.setScene(scene);
+//        primaryStage.getScene().getStylesheets().add("css/DarkTheme.css");
         primaryStage.show();
 
     }
